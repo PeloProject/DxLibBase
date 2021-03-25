@@ -1,19 +1,17 @@
-#include "WinMain.h"
+#include "../GameApp.h"
+#include "../Scene/SceneManager.h"
 #include "DxLib.h"
-
 
 // ウィンドウの設定
 static const int WINDOW_WIDTH			= 400;
 static const int WINDOW_HEIGHT			= 600;
 static const int WINDOW_COLOR_BIT_DEPTH = 32;
 
-SceneManager g_SceneManager;
-
-
 //
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	// ウィンドウの設定
+	SetMainWindowText("SPACE INVADERS");
 	ChangeWindowMode(TRUE);
 	SetWindowSizeChangeEnableFlag(FALSE, FALSE);
 	SetGraphMode(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_COLOR_BIT_DEPTH);
@@ -28,7 +26,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SetDrawScreen(DX_SCREEN_BACK);
 
 	// タイトル表示
-	AppSceneManager.RequestNextScene(SceneManager::eSCENE_TYPE_TITLE);
+	SceneManager& sceneManager = g_GameApp.GetSceneManager();
+	sceneManager.RequestNextScene(SceneManager::eSCENE_TYPE_GAME);
 
 	//	メインループ
 	for (;;)
@@ -49,9 +48,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			ClearDrawScreen();
 
 			// 更新処理
-			AppSceneManager.Update();
-			AppSceneManager.Render();
+			sceneManager.Update();
+			sceneManager.Render();
 
+#if _DEBUG
+			// FPSの描画
+			DrawFormatString(0, 0, GetColor(255, 255, 255), "FPS:%f", GetFPS());
+#endif
 			// 裏画面の内容を表画面に反映
 			ScreenFlip();
 		}

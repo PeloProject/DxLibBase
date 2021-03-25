@@ -2,6 +2,16 @@
 #include "DxLib.h"
 
 //
+SceneGame::SceneGame()
+{
+}
+
+//
+SceneGame::~SceneGame()
+{
+}
+
+//
 void SceneGame::Initialize()
 {
 }
@@ -14,8 +24,5 @@ void SceneGame::Update()
 //
 void SceneGame::Render()
 {
-	static int test = 320;
-	test--;
-	DrawPixel(test, 240, GetColor(255, 255, 255));	// 点を打つ
-
+	DrawString(150, 240, "ゲームシーン", GetColor(255, 255, 255));
 }

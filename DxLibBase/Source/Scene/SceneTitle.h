@@ -4,11 +4,8 @@
 class SceneTitle : public SceneBase
 {
 public:
-	// デフォルトコンストラクタ
-	SceneTitle() {}
-
-	// デストラクタ
-	virtual ~SceneTitle() {}
+	SceneTitle();
+	virtual ~SceneTitle();
 
 	virtual void Initialize() override;
 	virtual void Update() override;

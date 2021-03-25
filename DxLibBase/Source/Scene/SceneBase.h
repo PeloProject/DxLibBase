@@ -3,10 +3,7 @@ class SceneBase
 {
 
 public:
-	// デフォルトコンストラクタ
 	SceneBase() {}
-
-	// デストラクタ
 	virtual ~SceneBase() {}
 
 	virtual void Initialize() = 0;

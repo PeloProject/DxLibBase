@@ -4,11 +4,8 @@
 class SceneGame : public SceneBase
 {
 public:
-	// デフォルトコンストラクタ
-	SceneGame() {}
-
-	// デストラクタ
-	virtual ~SceneGame() {}
+	SceneGame();
+	virtual ~SceneGame();
 
 	virtual void Initialize() override;
 	virtual void Update() override;

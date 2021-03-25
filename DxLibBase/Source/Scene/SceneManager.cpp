@@ -2,6 +2,7 @@
 #include "SceneTitle.h"
 #include "SceneGame.h"
 #include "DxLib.h"
+#include "../System/Utility.h"
 
 //
 SceneManager::SceneManager()
@@ -13,20 +14,14 @@ SceneManager::SceneManager()
 //
 SceneManager::~SceneManager()
 {
-	if (m_pScene)
-	{
-		delete m_pScene;
-		m_pScene = nullptr;
-	}
+	SafeDelete(m_pScene);
 }
 
 //
 void SceneManager::Update()
 {
-	// シーン変更
 	ChangeNextScene();
 
-	// 更新
 	if (m_pScene)
 	{
 		m_pScene->Update();
@@ -56,11 +51,7 @@ void SceneManager::ChangeNextScene()
 		return;
 	}
 
-	if (m_pScene)
-	{
-		delete m_pScene;
-		m_pScene = nullptr;
-	}
+	SafeDelete(m_pScene);
 
 	switch (m_NextSceneType)
 	{

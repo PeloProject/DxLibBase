@@ -1,6 +1,17 @@
 #include "SceneTitle.h"
 #include "DxLib.h"
-#include "../System/WinMain.h"
+#include "../GameApp.h"
+
+//
+SceneTitle::SceneTitle()
+{
+}
+
+//
+SceneTitle::~SceneTitle()
+{
+}
+
 //
 void SceneTitle::Initialize()
 {
@@ -13,13 +24,12 @@ void SceneTitle::Update()
 	GetHitKeyStateAll(buf);
 	if (buf[KEY_INPUT_A] == 1)
 	{
-		AppSceneManager.RequestNextScene(SceneManager::eSCENE_TYPE_GAME);
+		g_GameApp.GetSceneManager().RequestNextScene(SceneManager::eSCENE_TYPE_GAME);
 	}
 }
 
 //
 void SceneTitle::Render()
 {
-	// 文字列の描画
-	DrawString(100, 240, "Hello World! Press A Key", GetColor(255, 255, 255));
+	DrawString(100, 240, "タイトルシーン", GetColor(255, 255, 255));
 }
